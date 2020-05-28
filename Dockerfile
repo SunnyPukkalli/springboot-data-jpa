@@ -1,5 +1,4 @@
-FROM alpine:openjdk-8
+FROM openjdk:8-jre-alpine
 COPY target/database.jar database.jar
-ENV PROFILE=cloud
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","-Dspring.profiles.active=$PROFILE","database.jar"]
+ENTRYPOINT exec java -jar database.jar --spring.profiles.active=$PROFILE
